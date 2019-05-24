@@ -2,13 +2,12 @@
 
 import path from 'path';
 
+import mime from 'mime-types';
+import send from 'send';
+
 import { app, errorHandler } from 'mu';
 
 import { FetchFileProperties } from './queries';
-import mime from 'mime-types';
-
-var send = require('send');
-var i = 1;
 
 const GRAPH = process.env.MU_APPLICATION_GRAPH || 'http://mu.semte.ch/application';
 
@@ -16,15 +15,7 @@ function sharedUriToPath (uri) {
   return uri.replace('share://', '');
 }
 
-function headers (res, path, stat) {
-  // serve all files for download
-}
-
-app.get('/', function (req, res) {
-  res.send('Hello js-file-service');
-});
-
-app.get('/files/:id/download', function (req, res) {
+app.get('/files/:id/download', function (req, res, next) {
   FetchFileProperties({id: req.params.id}, GRAPH)
     .then(function (result) {
       if (result.results.bindings.length > 0) {
@@ -64,8 +55,7 @@ app.get('/files/:id/download', function (req, res) {
       }
     })
     .catch(function (err) {
-      console.log(err);
-      res.send("Oops something went wrong: " + JSON.stringify(err));
+      next(err);
     });
 });
 
