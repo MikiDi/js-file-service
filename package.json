@@ -1,0 +1,26 @@
+{
+  "name": "js-file-service",
+  "version": "0.0.0",
+  "description": "File service with support for range headers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikiDi/js-file-service.git"
+  },
+  "keywords": [
+    "mu.semte.ch"
+  ],
+  "author": "Michaël Dierick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikiDi/js-file-service/issues"
+  },
+  "homepage": "https://github.com/MikiDi/js-file-service#readme",
+  "dependencies": {
+    "send": "^0.17.1",
+    "@lblod/mu-auth-sudo": "^0.2.0"
+  }
+}
