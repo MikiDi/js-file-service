@@ -28,11 +28,12 @@ app.get('/files/:id/download', function (req, res, next) {
         // Content-type
         if (fileProperties.format) {
           contentType = mime.contentType(fileProperties.format);
+          res.set('Content-Type', contentType);
         } else if (fileProperties.extension || path.extname(filePath)) {
           extension = fileProperties.extension || path.extname(filePath);
           contentType = mime.contentType(extension);
-        }
-        res.setHeader('Content-Type', contentType);
+          res.set('Content-Type', contentType);
+       }
 
         // name
         if (req.query.name) {
