@@ -1,7 +1,6 @@
 'use strict';
 
-import { uuid, sparqlEscapeUri, sparqlEscapeString, sparqlEscapeInt, sparqlEscapeDateTime } from 'mu';
-import { querySudo as query, updateSudo as update } from '@lblod/mu-auth-sudo';
+import { sparqlEscapeString, sparqlEscapeUri, query } from 'mu';
 
 const FetchFileProperties = async function (fileProperties, graph) {
   let q = `
@@ -13,7 +12,7 @@ const FetchFileProperties = async function (fileProperties, graph) {
     
     SELECT ?uri ?physicalUri ?name ?format ?size ?extension
     WHERE {
-      GRAPH ?g {
+      GRAPH ${sparqlEscapeUri(graph)} {
         ?uri mu:uuid ${sparqlEscapeString(fileProperties.id)};
           a nfo:FileDataObject .
         ?physicalUri nie:dataSource ?uri .
