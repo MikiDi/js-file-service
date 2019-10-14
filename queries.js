@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import { uuid, sparqlEscapeUri, sparqlEscapeString, sparqlEscapeInt, sparqlEscapeDateTime } from 'mu';
 import { querySudo as query, updateSudo as update } from '@lblod/mu-auth-sudo';

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import path from 'path';
 
@@ -16,11 +16,11 @@ function sharedUriToPath (uri) {
 }
 
 app.get('/files/:id/download', function (req, res, next) {
-  FetchFileProperties({id: req.params.id}, GRAPH)
+  FetchFileProperties({ id: req.params.id }, GRAPH)
     .then(function (result) {
       if (result.results.bindings.length > 0) {
         let fileProperties = result.results.bindings[0];
-        let contentType, name, extension, created;
+        let contentType, name, extension;
 
         // path
         let filePath = sharedUriToPath(fileProperties.physicalUri.value);
@@ -33,7 +33,7 @@ app.get('/files/:id/download', function (req, res, next) {
           extension = fileProperties.extension || path.extname(filePath);
           contentType = mime.contentType(extension);
           res.set('Content-Type', contentType);
-       }
+        }
 
         // name
         if (req.query.name) {
