@@ -38,12 +38,6 @@ app.get('/files/:id/download', function (req, res, next) {
         // name
         if (req.query.name) {
           name = req.query.name;
-        } else if (fileProperties.name && fileProperties.extension) {
-          name = `${fileProperties.name}.${fileProperties.extension}`;
-        } else {
-          name = path.basename(filePath);
-        }
-        if (name) {
           res.set('Content-Disposition', `attachment; filename="${name}"`);
         } else {
           res.set('Content-Disposition', 'attachment');
