@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/MikiDi/js-file-service#readme",
   "dependencies": {
-    "send": "^0.17.1",
-    "@lblod/mu-auth-sudo": "^0.2.0"
+    "send": "^0.17.1"
   }
 }
