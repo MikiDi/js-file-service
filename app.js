@@ -38,10 +38,10 @@ app.get('/files/:id/download', function (req, res, next) {
         // name
         if (req.query.name) {
           name = req.query.name;
-          res.set('Content-Disposition', `attachment; filename="${name}"`);
         } else {
-          res.set('Content-Disposition', 'attachment');
+          name = path.basename(filePath);
         }
+        res.set('Content-Disposition', `attachment; filename="${name}"`);
 
         send(req, filePath, { root: '/share' })
           .pipe(res);
